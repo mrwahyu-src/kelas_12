@@ -21,12 +21,16 @@
         <div class="space-y-6">
             <div>
                 <label for="nama" class="block font-medium text-gray-700 mb-2">Nama:</label>
-                <input type="text" id="nama" class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500 shadow-sm" placeholder="Masukkan Nama Lengkap Anda" required>
+                <input type="text" id="nama" class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500 shadow-sm" placeholder="Masukkan Nama Anda" required>
             </div>
             <div>
                 <label for="asal" class="block font-medium text-gray-700 mb-2">Asal:</label>
                 <input type="text" id="asal" class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500 shadow-sm" placeholder="Masukkan Asal Anda" required>
             </div>
+            <!-- Compact login instruction note -->
+<p class="text-sm text-black-400 text-center mb-4">
+     *pastikan Anda dari kelas 12, masukkan nama dan alamat yang sesuai.
+</p>
             <button onclick="login()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-300 shadow-lg">
                 <i class="fas fa-sign-in-alt mr-2"></i>
                 Login
@@ -35,6 +39,7 @@
     </div>
 
     <div id="content" class="hidden w-full max-w-lg bg-white rounded-3xl shadow-2xl p-10 mt-8">
+        <!-- Konten setelah login -->
         <div class="text-center mb-8">
             <h2 class="text-2xl font-bold text-gray-800">Halo, <span id="userName"></span> dari <span id="userAsal"></span>!</h2>
             <p class="text-gray-600">Selamat datang di website Kelas 12 IPS MA</p>
@@ -213,6 +218,57 @@
     document.getElementById('strukturKelasSection').classList.remove('hidden');
     document.getElementById('scheduleSection').classList.add('hidden');
     document.getElementById('absensiSection').classList.add('hidden');
+}
+    </script>
+    </div>
+
+    <script src="https://kit.fontawesome.com/your-font-awesome-key.js" crossorigin="anonymous"></script>
+    <script>
+        const daftarAbsen = [
+            "Adit Kurniawan", "Afan Aditya Ramadhani", "Ahmad Faturrahman Ramadhani", "Akhmad Wakhidin", 
+            "Alvi Lailatul Azmi", "Apriliyanti Fidya Astuti", "Aulia Laelatul Hikmah", "Bunga Arum Salsabila", 
+            "Febri Ibnu Aliyilbuni", "Gunawan Ilham Maulana Riski", "Haikal Fauzan Arif", "Imel Aulia Anjani", 
+            "Kaanz Nafi Khaerullah", "Kevin Sanjaya", "Khaerul Anam", "M. Abdu Fatah", "M. Fasya", "M. Humam Ghozali", 
+            "M. Ilham Sangaji", "M. Wahyu Sutanto", "M. Ridho", "Moh Udy", "Nadia Fika Sakinah", "Nazmah Umniah", 
+            "Nur Riski Awalia Febriani", "Rafly Alghifar", "Rehan Al Farizi", "Ridho Gainuga", "Riyan Setiawan", 
+            "Rizal Umami", "Rotama Surya", "Sulis Setiana", "Sulis Setiani", "Shamila Dwi Apriliani", "Tiara Ramadhani", 
+            "Yulia Amanda"
+        ];
+
+        function login() {
+    const nama = document.getElementById('nama').value;
+    const asal = document.getElementById('asal').value;
+
+    // Daftar nama untuk pesan "Halo Sahabat"
+    const temanAbsen = [
+        "Adit Kurniawan", "Afan Aditya Ramadhani", "Ahmad Faturrahman Ramadhani", "Akhmad Wakhidin", 
+        "Alvi Lailatul Azmi", "Apriliyanti Fidya Astuti", "Aulia Laelatul Hikmah", "Bunga Arum Salsabila", 
+        "Febri Ibnu Aliylbuni", "Gunawan Ilham Maulana Riski", "Haikal Faozan Arif", "Imel Aulia Anjani", 
+        "Kaanz Nafi Khaerullah", "Kevin Sanjaya", "Khaerul Anam", "M Abdu Fatah", "M Fasya", "M Humam Ghozali", 
+        "M Ilham Sangaji", "M Wahyu Sutanto", "M Ridho", "Moh Udy", "Nadia Fika Sakinah", "Nazmah Umniah", 
+        "Nur Riski Awalia Febriani", "Rafly Alghifar", "Reikhan Al Farizi", "Ridho Gainuga", "Riyan Setiawan", 
+        "Rizal Umami", "Rotama Surya", "Sulis Setiana", "Shamila Dwi Apriliani", "Tiara Ramadhani", "Yulia Amanda"
+    ];
+
+    if (nama && asal) {
+        // Cek apakah nama mengandung "evi" (untuk Ibu Walikelas yang Cantik)
+        if (nama.toLowerCase().includes("evi")) {
+            document.getElementById('userName').innerText = "Ibu Walikelas yang Cantik";
+        } else if (temanAbsen.some(n => nama.toLowerCase().includes(n.toLowerCase()))) {
+            // Cek apakah nama mengandung salah satu nama teman absen
+            document.getElementById('userName').innerText = "Sahabat";
+        } else {
+            document.getElementById('userName').innerText = nama;
+        }
+
+        document.getElementById('userAsal').innerText = asal;
+
+        // Menyembunyikan halaman login dan menampilkan konten setelah login
+        document.querySelector('.max-w-lg').classList.add('hidden');
+        document.getElementById('content').classList.remove('hidden');
+    } else {
+        alert('Lu ga punya nama sama alamat ya???');
+    }
 }
     </script>
 </body>
