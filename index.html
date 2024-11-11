@@ -47,8 +47,12 @@
             </button>
             <button onclick="showAbsensi()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-300 shadow-lg">
                 <i class="fas fa-clipboard-list mr-2"></i>
-                Lihat Jadwal Piket dan Nama Absen
+                Lihat Daftar Absen
             </button>
+            <button onclick="showStrukturKelas()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-300 shadow-lg mt-4">
+    <i class="fas fa-users mr-2"></i>
+    Lihat Struktur Kelas
+</button>
         </div>
 
         <div class="schedule hidden mt-8" id="scheduleSection">
@@ -83,10 +87,68 @@
         </div>
 
         <div class="hidden mt-8" id="absensiSection">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Jadwal Piket dan Nama Absen Belum terkumpul datanya (btw sabar yah anak kontol)</h3>
+            <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md mt-4">
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Daftar Nama Absen</h3>
+    <ul class="list-disc list-inside text-gray-700">
+        <li>Adit Kurniawan</li>
+        <li>Afan Aditya Ramadhani</li>
+        <li>Ahmad Faturrahman Ramadhani</li>
+        <li>Akhmad Wakhidin</li>
+        <li>Alvi Lailatul Azmi</li>
+        <li>Apriliyanti Fidya Astuti</li>
+        <li>Aulia Laelatul Hikmah</li>
+        <li>Bunga Arum Salsabila</li>
+        <li>Febri Ibnu Aliyilbuni</li>
+        <li>Gunawan Ilham Maulana Riski</li>
+        <li>Haikal Fauzan Arif</li>
+        <li>Imel Aulia Anjani</li>
+        <li>Kaanz Nafi Khaerullah</li>
+        <li>Kevin Sanjaya</li>
+        <li>Khaerul Anam</li>
+        <li>M. Abdu Fatah</li>
+        <li>M. Fasya</li>
+        <li>M. Humam Ghozali</li>
+        <li>M. Ilham Sangaji</li>
+        <li>M. Wahyu Sutanto</li>
+        <li>M. Ridho</li>
+        <li>Moh Udy</li>
+        <li>Nadia Fika Sakinah</li>
+        <li>Nazmah Umniah</li>
+        <li>Nur Riski Awalia Febriani</li>
+        <li>Rafly Alghifar</li>
+        <li>Reikhan Al Farizi</li>
+        <li>Ridho Gainuga</li>
+        <li>Riyan Setiawan</li>
+        <li>Rizal Umami</li>
+        <li>Rotama Surya</li>
+        <li>Sulis Setiana</li>
+        <li>Sulis Setiani</li>
+        <li>Shamila Dwi Apriliani</li>
+        <li>Tiara Ramadhani</li>
+        <li>Yulia Amanda</li>
+    </ul>
+</div>
             <!-- Tambahkan form atau elemen lain jika diperlukan -->
         </div>
-
+<div class="hidden mt-8" id="strukturKelasSection">
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Struktur Kelas</h3>
+    <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+        <p><strong>Wali Kelas:</strong> Evi Wulandari, S.Pd</p>
+        <p><strong>Ketua Kelas:</strong> Khaerul Anam</p>
+        <p><strong>Wakil Ketua Kelas:</strong> Mohammad Wahyu Sutanto</p>
+        <p><strong>Sekretaris 1:</strong> Bunga Arum Salsabila</p>
+        <p><strong>Sekretaris 2:</strong> Shamila Dwi Apriliyanti</p>
+        <p><strong>Bendahara 1:</strong> Nur Riski Awalia</p>
+        <p><strong>Bendahara 2:</strong> Nadia Fika Sakinah</p>
+    </div>
+    <h4 class="text-lg font-bold text-gray-800 mt-6">Seksi-seksi</h4>
+    <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md mt-4">
+        <p><strong>Keamanan:</strong> Ahmad Wahidin, Rehan Alfariz, Rafli Algifari, Yulia Amada, Tiara Ramadhani, Apriliyanti Fidya Astuti</p>
+        <p><strong>Kebersihan:</strong> Imel Aulia Anjani, Aulia Laelatul Hikmah, Sulis Setiani, Gunawan Ilham M.R, Kaanz Nafi, Ahmad Fatur, Ridho Gay</p>
+        <p><strong>Keagamaan:</strong> Moh Udi, Adit Kurniawan, M. Ridho, Haikal Fauzan, Alvi Lailatul, Salis Setiana, Nazma Umniah</p>
+        <p><strong>Ketertiban:</strong> Abdu Fatah, Febri Ibnu, Kevin, Humam Gozali, Riyan Setiawan, Afan Aditya, Fasya, Nur Ilham</p>
+    </div>
+</div>
         <footer class="mt-8 text-center text-gray-500 text-sm">
             <p>Developed by Wahyu</p>
         </footer>
@@ -105,7 +167,7 @@
                 document.querySelector('.max-w-lg').classList.add('hidden');
                 document.getElementById('content').classList.remove('hidden');
             } else {
-                alert('Silakan isi nama dan asal terlebih dahulu');
+                alert('Lu ga punya nama sama alamat ya???');
             }
         }
 
@@ -147,6 +209,11 @@
             document.getElementById('absensiSection').classList.remove('hidden');
             document.getElementById('scheduleSection').classList.add('hidden');
         }
+    function showStrukturKelas() {
+    document.getElementById('strukturKelasSection').classList.remove('hidden');
+    document.getElementById('scheduleSection').classList.add('hidden');
+    document.getElementById('absensiSection').classList.add('hidden');
+}
     </script>
 </body>
 </html>
