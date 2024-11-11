@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas 12 IPS MA - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(to right, #4b5563, #6b7280);
+        }
+    </style>
+</head>
+<body class="font-sans gradient-bg flex justify-center items-center min-h-screen">
+    <div class="w-full max-w-lg bg-white rounded-3xl shadow-2xl p-10">
+        <div class="text-center mb-8">
+            <img src="https://i.ibb.co.com/JRfKbQh/IMG-20241111-200548.jpg" alt="" class="mx-auto w-32 h-32 rounded-full mb-7 shadow-lg">
+            <h1 class="text-3xl font-bold text-gray-800">Selamat Datang</h1>
+            <p class="text-gray-600">di Website Kelas 12 IPS MA DAARUL ISTIQOMAH </p>
+        </div>
+        <div class="space-y-6">
+            <div>
+                <label for="nama" class="block font-medium text-gray-700 mb-2">Nama:</label>
+                <input type="text" id="nama" class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500 shadow-sm" placeholder="Masukkan Nama Lengkap Anda" required>
+            </div>
+            <div>
+                <label for="asal" class="block font-medium text-gray-700 mb-2">Asal:</label>
+                <input type="text" id="asal" class="w-full border-2 border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500 shadow-sm" placeholder="Masukkan Asal Anda" required>
+            </div>
+            <button onclick="login()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-300 shadow-lg">
+                <i class="fas fa-sign-in-alt mr-2"></i>
+                Login
+            </button>
+        </div>
+    </div>
+
+    <div id="content" class="hidden w-full max-w-lg bg-white rounded-3xl shadow-2xl p-10 mt-8">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-800">Halo, <span id="userName"></span> dari <span id="userAsal"></span>!</h2>
+            <p class="text-gray-600">Selamat datang di website Kelas 12 IPS MA</p>
+        </div>
+        
+        <div class="space-y-4">
+            <button onclick="showSchedule()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-300 shadow-lg">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                Lihat Jadwal Pelajaran
+            </button>
+            <button onclick="showAbsensi()" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-300 shadow-lg">
+                <i class="fas fa-clipboard-list mr-2"></i>
+                Lihat Jadwal Piket dan Nama Absen
+            </button>
+        </div>
+
+        <div class="schedule hidden mt-8" id="scheduleSection">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Jadwal Pelajaran</h3>
+            <div id="scheduleList" class="space-y-4">
+                <!-- Jadwal akan ditampilkan di sini -->
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Senin</div>
+                    <div class="text-gray-600 mt-2">Sosiologi, Bahasa Inggris, Ekonomi, Geografi</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Selasa</div>
+                    <div class="text-gray-600 mt-2">PJOK, Tahfidz Quran, Geografi, Matematika, Ke NUan</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Rabu</div>
+                    <div class="text-gray-600 mt-2">Informatika, Matematika, Seni Budaya, Bahasa Jawa, Bahasa Arab</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Kamis</div>
+                    <div class="text-gray-600 mt-2">Fiqih, SKI, Bahasa Indonesia, Al-Quran, Hadis, Ke NUan</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Jumat</div>
+                    <div class="text-gray-600 mt-2">Akidah Akhlak, Sejarah Indonesia</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Sabtu</div>
+                    <div class="text-gray-600 mt-2">PKN, Sejarah Umum, Prakarya, Geografi, Ekonomi</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden mt-8" id="absensiSection">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Jadwal Piket dan Nama Absen Belum terkumpul datanya (btw sabar yah anak kontol)</h3>
+            <!-- Tambahkan form atau elemen lain jika diperlukan -->
+        </div>
+
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>Developed by Wahyu</p>
+        </footer>
+    </div>
+
+    <script src="https://kit.fontawesome.com/your-font-awesome-key.js" crossorigin="anonymous"></script>
+    <script>
+        function login() {
+            const nama = document.getElementById('nama').value;
+            const asal = document.getElementById('asal').value;
+
+            if (nama && asal) {
+                document.getElementById('userName').innerText = nama;
+                document.getElementById('userAsal').innerText = asal;
+
+                document.querySelector('.max-w-lg').classList.add('hidden');
+                document.getElementById('content').classList.remove('hidden');
+            } else {
+                alert('Silakan isi nama dan asal terlebih dahulu');
+            }
+        }
+
+        function showSchedule() {
+            const scheduleList = document.getElementById('scheduleList');
+            // Tampilkan jadwal pelajaran dari data sebelumnya
+            scheduleList.innerHTML = `
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Senin</div>
+                    <div class="text-gray-600 mt-2">Sosiologi, Bahasa Inggris, Ekonomi, Geografi</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Selasa</div>
+                    <div class="text-gray-600 mt-2">PJOK, Tahfidz Quran, Geografi, Matematika, Ke NUan</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Rabu</div>
+                    <div class="text-gray-600 mt-2">Informatika, Matematika, Seni Budaya, Bahasa Jawa, Bahasa Arab</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Kamis</div>
+                    <div class="text-gray-600 mt-2">Fiqih, SKI, Bahasa Indonesia, Al-Quran, Hadis, Ke NUan</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Jumat</div>
+                    <div class="text-gray-600 mt-2">Akidah Akhlak, Sejarah Indonesia</div>
+                </div>
+                <div class="bg-gray-100 rounded-xl px-6 py-4 shadow-md">
+                    <div class="font-medium text-gray-800">Sabtu</div>
+                    <div class="text-gray-600 mt-2">PKN, Sejarah Umum, Prakarya, Geografi, Ekonomi</div>
+                </div>
+            `;
+
+            document.getElementById('scheduleSection').classList.remove('hidden');
+            document.getElementById('absensiSection').classList.add('hidden');
+        }
+
+        function showAbsensi() {
+            document.getElementById('absensiSection').classList.remove('hidden');
+            document.getElementById('scheduleSection').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
