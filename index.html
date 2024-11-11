@@ -6,6 +6,28 @@
     <title>Kelas 12 IPS MA - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+    /* Tema Terang */
+body {
+    background-color: #f9fafb;
+    color: #1f2937;
+}
+
+/* Tema Gelap */
+body.dark {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+/* Atur tombol agar terlihat lebih baik */
+button#toggleMode {
+    background-color: #4b5563;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button#toggleMode:hover {
+    background-color: #6b7280;
+}
         .gradient-bg {
             background: linear-gradient(to right, #4b5563, #6b7280);
         }
@@ -36,6 +58,9 @@
                 Login
             </button>
         </div>
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>Developed by Wahyu</p>
+        </footer>
     </div>
 
     <div id="content" class="hidden w-full max-w-lg bg-white rounded-3xl shadow-2xl p-10 mt-8">
@@ -239,7 +264,7 @@
     const nama = document.getElementById('nama').value;
     const asal = document.getElementById('asal').value;
 
-    // Daftar nama untuk pesan "Halo Sahabat"
+    // Daftar nama yang boleh login (bisa nama lengkap atau nama panggilan)
     const temanAbsen = [
         "Adit Kurniawan", "Afan Aditya Ramadhani", "Ahmad Faturrahman Ramadhani", "Akhmad Wakhidin", 
         "Alvi Lailatul Azmi", "Apriliyanti Fidya Astuti", "Aulia Laelatul Hikmah", "Bunga Arum Salsabila", 
@@ -251,11 +276,17 @@
     ];
 
     if (nama && asal) {
-        // Cek apakah nama mengandung "evi" (untuk Ibu Walikelas yang Cantik)
+        // Cek apakah nama mengandung salah satu nama dalam daftar absen
+        if (!temanAbsen.some(n => n.toLowerCase().includes(nama.toLowerCase()))) {
+            alert('Nama Anda tidak terdaftar di absen, DASAR PENYUSUP!!!');
+            return; // Jika nama tidak ada, hentikan login
+        }
+
+        // Jika nama mengandung "evi" (untuk Ibu Walikelas yang Cantik)
         if (nama.toLowerCase().includes("evi")) {
             document.getElementById('userName').innerText = "Ibu Walikelas yang Cantik";
-        } else if (temanAbsen.some(n => nama.toLowerCase().includes(n.toLowerCase()))) {
-            // Cek apakah nama mengandung salah satu nama teman absen
+        } else if (temanAbsen.some(n => n.toLowerCase().includes(nama.toLowerCase()))) {
+            // Jika nama terdapat di daftar teman absen
             document.getElementById('userName').innerText = "Sahabat";
         } else {
             document.getElementById('userName').innerText = nama;
